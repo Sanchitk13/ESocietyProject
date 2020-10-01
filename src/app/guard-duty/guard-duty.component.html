@@ -1,0 +1,137 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <h2 >Guard Details</h2>
+    <div class="row">
+<div class="col-10" [hidden]="display">
+    <h2>DISPLAYING ALL VISITORS</h2>
+<table class="table">
+    <tr>
+            <td>Visitor ID</td>
+            <td>Visitor Name</td>
+            <td>Entry Time</td>
+            <td>Exit Time</td>
+            <td>Details</td>
+            <td>House ID</td>
+            <td>Parking Required</td>
+    </tr>
+    <tr *ngFor="let item of res">
+           <td>{{item.Visitor_ID}}</td>
+           <td>{{item.Visitor_Name}}</td>
+           <td>{{item.In_Datetime}}</td>
+           <td>{{item.Out_Datetime}}</td>
+           <td>{{item.Details}}</td>
+           <td>{{item.House_ID}}</td>
+           <td>{{item.Require}}</td>
+    </tr>
+</table>
+</div>
+
+
+<div class="col-10" [hidden]="insert">
+    <h2>INSERTING NEW VISITOR</h2> 
+
+<form [formGroup]="newvisitor">
+    <table class="table">
+        <tr>
+            <td>Visitor Name</td>
+            <td><input type="text" formControlName="name"></td>
+            <td><span *ngIf = "newvisitor.controls['name'].hasError('required')">Visitor name is compulsory</span></td>
+        </tr>
+        <tr>
+            <td>Entry Time</td>
+            <td><input type="datetime-local" formControlName="entry"></td>
+            <td><span *ngIf = "newvisitor.controls['entry'].hasError('required')">Entry time is compulsory</span></td>
+        </tr>
+        <tr>
+            <td>Exit Time</td>
+            <td><input type="datetime-local" formControlName="exit" readonly></td>
+        </tr>
+        <tr>
+            <td>Details</td>
+            <td><input type="text" formControlName="details"></td>
+            <td><span *ngIf = "newvisitor.controls['details'].hasError('required')">Details are compulsory</span></td>
+        </tr>
+        <tr>
+            <td>House ID</td>
+            <td><input type="text" formControlName="hid"></td>
+            <td><span *ngIf = "newvisitor.controls['hid'].hasError('required')">House ID is compulsory</span></td>
+        </tr>
+        <tr>
+            <td>Parking Required</td>
+            <td><select formControlName="require">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+            <span *ngIf = "newvisitor.controls['require'].hasError('required')">This field is compulsory</span></td>
+           <!--
+                <td><input type="number" formControlName="require"></td>
+            <td></td>
+           -->
+        </tr>
+        <tr>
+            <td><button type="button" class="btn btn-dark" [disabled]="newvisitor.invalid" (click)="AddNewVisitor()">Insert</button></td>
+        </tr>
+    </table>
+</form>
+</div>
+
+<div class="col-10" [hidden]="update">
+    <h2>UPDATING VISITOR DETAILS</h2>
+
+<form [formGroup]="updatevisitor" style="background-color: darkgoldenrod;">
+    <table class="table">
+        <tr>
+            <td>Enter Visitor ID</td>
+            <td><input type="number" formControlName="id"></td>
+            <td><span *ngIf = "updatevisitor.controls['id'].hasError('required')">Visitor ID is compulsory</span></td>
+        </tr>
+        <tr>
+            <button type="button" class="btn btn-dark" (click)="SearchVisitor()">Get Details</button>
+        </tr>
+        <tr>
+            <td>Visitor Name</td>
+            <td><input type="text" formControlName="name" value={{gd.Visitor_Name}} readonly></td>
+        </tr>
+        <tr>
+            <td>Entry Time</td>
+            <td><input type="datetime-local" formControlName="entry" value={{gd.In_Datetime}} readonly></td>
+        </tr>
+        <tr>
+            <td>Exit Time</td>
+            <td><input type="datetime-local" formControlName="exit" value={{gd.Out_Datetime}}></td>
+        </tr>
+        <tr>
+            <td>Details</td>
+            <td><input type="text" formControlName="details" value={{gd.Details}} readonly></td>
+        </tr>
+        <tr>
+            <td>House ID</td>
+            <td><input type="text" formControlName="hid" value={{gd.House_ID}} readonly></td>
+        </tr>
+        <tr>
+            <td>Parking Required</td>
+            <td><input type="number" formControlName="require" value={{gd.Require}} readonly></td>
+        </tr>
+        <tr>
+            <td><button type="button"  class="btn btn-dark" [disabled]="updatevisitor.invalid" (click)="UpdateVisitor()">Update</button></td>
+        </tr>
+    </table>
+</form>
+
+</div>
+
+
+<div class="col-2">
+    <div class="row"><button type="button" class="btn btn-warning" (click)="Display()">Display All Visitors</button></div>
+    <div class="row"><button type="button" class="btn btn-success" (click)="Insert()">Insert New Visitor</button></div>
+    <div class="row"><button type="button" class="btn btn-primary" (click)="Update()">Update Visitor Info</button></div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+

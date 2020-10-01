@@ -1,0 +1,166 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <h2 >Function Details</h2>
+    <div class="row">
+    <div class="col-10"  [hidden]="showed">  
+        <table class="table" >
+            <thead>
+                <tr>
+                    <th scope="col">Function Details Id</th>
+                    <th scope="col">Function Category Id</th>
+                    <th scope="col">Function Owner Id</th>
+                    <th scope="col">Function Date</th>
+                    <th scope="col">Function time</th>
+                    <th scope="col">Function duration</th>
+                    <th scope="col">Function details</th>
+                    <th scope="col">Function Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let u of result">
+                    <th scope="row">{{u.Function_ID}}</th>
+                    <td>{{u.Function_Category_ID}}</td>
+                    <td>{{u.Owner_ID}}</td>
+                    <td>{{u.Function_Date}}</td>
+                    <td>{{u.Function_Time}}</td>
+                    <td>{{u.Function_Duration}}</td>
+                    <td>{{u.Function_Details}}</td>
+                    <td>{{u.Function_Status}}</td>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-10" [hidden]="inser"  >
+        <table class="table">
+            <thead></thead>
+            <tbody>
+                <tr>
+                    <th scope="row" >Enter Function category ID: </th>
+                    <td><input type="number" name='FC' [(ngModel)]="res.Function_Category_ID" #FC="ngModel" required/></td>
+                        <td><span *ngIf="FC.errors?.required">Function ID cannot be empty</span></td>
+                     
+                </tr>
+                <tr>
+                    <th scope="row" >Enter ID of owner: </th>
+                    <td><input type="number" name='OID' [(ngModel)]="res.Owner_ID" #OID="ngModel" required/></td>
+                        <td><span *ngIf="OID.errors?.required">Owner ID cannot be empty</span></td>
+                     
+                </tr>
+                <tr>
+                    <th scope="row" >Enter Date Of Funtion: </th>
+                    <td><input type="date" name='Date' [(ngModel)]="res.Function_Date" #Date="ngModel" required/></td>
+                        <td><span *ngIf="Date.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+                <tr>
+                    <th scope="row" >Enter time of the function: </th>
+                    <td><input type="time" name='Time' [(ngModel)]="res.Function_Time" #Time="ngModel" required/></td>
+                        <td><span *ngIf="Time.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+                <tr>
+                    <th scope="row" >Enter Approx duration in hours: </th>
+                    <td><input type="text" name='Dur' [(ngModel)]="res.Function_Duration" #Dur="ngModel" required/></td>
+                        <td><span *ngIf="Dur.errors?.required">Metion Approx Duration</span></td>
+                     
+                </tr>
+                <tr>
+                    <th scope="row" >Enter Details: </th>
+                    <td><input type="text" name='Details' [(ngModel)]="res.Function_Details" #Details="ngModel" required/></td>
+                        <td><span *ngIf="Details.errors?.required">Plz metion details</span></td>
+                     
+                </tr>
+                
+                <tr>
+                    <th></th>
+                    <td><button type="button" class="btn btn-dark" (click)="InsertDetails()" >Insert </button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-10" [hidden]="updat">
+
+        <form >
+            <h4>Search</h4>
+              <table class="table">
+              
+                  <tbody>
+                  <tr >
+                      <th scope="row">Enter Function ID :</th>
+                      <td><input type="number" name="id" #id/></td>
+                  </tr>   
+                  <tr>
+                    <th></th>
+                      <td><input type="button" class="btn btn-dark" (click)="getbyId(id.value)" value="Search"/></td>
+                  </tr>
+
+                    
+                  </tbody>
+                </table>
+          </form>
+        <table class="table">
+            <thead></thead>
+            <tbody>
+                <tr>
+                    <th scope="row" >Enter Funtoion category: </th>
+                    <td><input type="number" name='UFC' [(ngModel)]="resUp.Function_Category_ID" #UFC="ngModel" required/></td>
+                        <td><span *ngIf="UFC.errors?.required">Category ID cannot be empty</span></td>
+                     
+                </tr>
+                <tr>
+                    <th scope="row" >Enter ID of owner: </th>
+                    <td><input type="number" name='UID' [(ngModel)]="resUp.Owner_ID" #UID="ngModel" required/></td>
+                        <td><span *ngIf="UID.errors?.required">Owner ID cannot be empty</span></td>
+                     
+                </tr>
+                <tr>
+                    <th scope="row" >Enter Date Of Funtion: </th>
+                    <td><input type="date" name='UDate' [(ngModel)]="resUp.Function_Date" #UDate="ngModel" required/></td>
+                        <td><span *ngIf="Date.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+                <tr>
+                    <th scope="row" >Enter time of the function: </th>
+                    <td><input type="time" name='UTime' [(ngModel)]="resUp.Function_Time" #UTime="ngModel" required/></td>
+                        <td><span *ngIf="UTime.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+                <tr>
+                    <th scope="row" >Enter Approx duration in hours: </th>
+                    <td><input type="text" name='UDur' [(ngModel)]="resUp.Function_Duration" #UDur="ngModel" required/></td>
+                        <td><span *ngIf="UDur.errors?.required">Metion Approx Duration</span></td>
+                     
+                </tr>
+                <tr>
+                    <th scope="row" >Enter Details: </th>
+                    <td><input type="text" name='UDetails' [(ngModel)]="resUp.Function_Details" #UDetails="ngModel" required/></td>
+                        <td><span *ngIf="UDetails.errors?.required">Plz metion details</span></td>
+                     
+                </tr>
+
+                <tr>
+                    <th scope="row" >Enter Status: </th>
+                    <td><input type="number" name='UStatus' [(ngModel)]="resUp.Function_Status" #UStatus="ngModel" min="0" max="1" required/></td>
+                        <td><span *ngIf="UStatus.errors?.required">Make the Change In status</span></td>
+                     
+                </tr>
+                <tr>
+                    <th></th>
+                    <td><button type="button" class="btn btn-dark" (click)="updateDetails()" >Update </button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="col-2">
+            <div class="row"><button type="button" class="btn btn-warning" (click)="show()">Show All Fuction Details </button></div>
+            <br/>
+            <div class="row"><button type="button" class="btn btn-success" (click)="insert()">Insert Fuction Details</button></div>
+            <br/>
+            <div class="row"><button type="button" class="btn btn-primary" (click)="update()">Update Status</button></div>
+           
+    </div>
+    </div>
+</div>
+

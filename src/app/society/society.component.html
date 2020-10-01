@@ -1,0 +1,146 @@
+<app-navbar></app-navbar>
+    <div class="container">
+    <h2 >Society Details</h2>
+    <div class="row">
+    <div class="col-8"  [hidden]="showed">  
+        <table class="table" >
+            <thead>
+                <tr>
+                    <th scope="col">society No</th>
+                    <th scope="col">Society Name</th>
+                    <th scope="col">Society City</th>
+                    <th scope="col">Pincode</th>
+                    <th scope="col">No of Houses</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let u of result">
+                    <th scope="row">{{u.Society_ID}}</th>
+                    <td>{{u.Society_Name}}</td>
+                    <td>{{u.Society_City}}</td>
+                    <td>{{u.Society_Pincode}}</td>
+                    <td>{{u.Society_NoOffHouse}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-8" [hidden]="inser"  >
+        <table class="table">
+            <thead></thead>
+            <tbody>
+                <tr>
+                    <th scope="row" >Enter Society No: </th>
+                    <td><input type="text" name='sno' [(ngModel)]="res.Society_ID" #sno="ngModel" required/></td>
+                        <td><span *ngIf="sno.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+                <tr>
+                    <th scope="row" >Enter Society Name: </th>
+                    <td><input type="text" name='SName' [(ngModel)]="res.Society_Name" #SName="ngModel" required/></td>
+                        <td><span *ngIf="SName.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+                <tr>
+                    <th scope="row" >Enter City: </th>
+                    <td><input type="text" name='City' [(ngModel)]="res.Society_City" #City="ngModel" required/></td>
+                        <td><span *ngIf="City.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+
+                <tr>
+                    <th scope="row" >Enter Pincode: </th>
+                    <td><input type="number" name='Pincode' [(ngModel)]="res.Society_Pincode" #Pincode="ngModel" required/></td>
+                        <td><span *ngIf="Pincode.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+                <tr>
+                    <th scope="row" >Enter No of Houses In Society: </th>
+                    <td><input type="number" name='nho' [(ngModel)]="res.Society_NoOffHouse" #nho="ngModel" required/></td>
+                        <td><span *ngIf="nho.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+
+                <tr>
+                    <th></th>
+                    <td><button type="button" class="btn btn-dark" (click)="postSociety()" >Insert </button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-8" [hidden]="updat">
+
+      
+            <h4>Search</h4>
+            <table class="table">
+            
+                <tbody>
+                <tr >
+                    <th scope="row">Enter society ID :</th>
+                    <td><input type="text" name="id" #id/></td>
+                </tr>   
+                <tr>
+                  <th></th>
+                    <td><input type="button" class="btn btn-dark" (click)="getByid(id.value)" value="Search"/></td>
+                </tr>
+
+                  
+                </tbody>
+              </table>
+
+              <table class="table">
+              
+                
+                    <tbody>
+                        <tr>
+                            <th scope="row" >Enter Society No: </th>
+                            <td><input type="text" name='Usno' [(ngModel)]="resUp.Society_ID" #Usno="ngModel" required/></td>
+                                <td><span *ngIf="Usno.errors?.required">Field cannot be empty</span></td>
+                             
+                        </tr>
+                        <tr>
+                            <th scope="row" >Enter Society Name: </th>
+                            <td><input type="text" name='USName' [(ngModel)]="resUp.Society_Name" #USName="ngModel" required/></td>
+                                <td><span *ngIf="USName.errors?.required">Field cannot be empty</span></td>
+                             
+                        </tr>
+                        <tr>
+                            <th scope="row" >Enter City: </th>
+                            <td><input type="text" name='UCity' [(ngModel)]="resUp.Society_City" #UCity="ngModel" required/></td>
+                                <td><span *ngIf="UCity.errors?.required">Field cannot be empty</span></td>
+                             
+                        </tr>
+        
+                        <tr>
+                            <th scope="row" >Enter Pincode: </th>
+                            <td><input type="number" name='UPincode' [(ngModel)]="resUp.Society_Pincode" #UPincode="ngModel" required/></td>
+                                <td><span *ngIf="UPincode.errors?.required">Field cannot be empty</span></td>
+                             
+                        </tr>
+                        <tr>
+                            <th scope="row" >Enter No of Houses In Society: </th>
+                            <td><input type="number" name='unho' [(ngModel)]="resUp.Society_NoOffHouse" #unho="ngModel" required/></td>
+                                <td><span *ngIf="unho.errors?.required">Field cannot be empty</span></td>
+                             
+                        </tr>
+ 
+                <tr>
+                    <th></th>
+                    <td><button type="button" class="btn btn-dark" (click)="putSociety()" >Update </button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="col-4">
+            <div class="row"><button type="button" class="btn btn-warning" (click)="show()">Show Society Dtails</button></div>
+            <br/>
+            <div class="row"><button type="button" class="btn btn-success" (click)="insert()">Insert Society</button></div>
+            <br/>
+            <div class="row"><button type="button" class="btn btn-primary" (click)="update()">Update Society Details</button></div>
+           
+    </div>
+    </div>
+</div>
+
+
+

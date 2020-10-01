@@ -1,0 +1,127 @@
+<app-navbar></app-navbar>
+<div class="container" >
+    <h2>Additional Facility Details</h2>
+    <div class="row">
+    <div class="col-10" [hidden]="showed" >
+        <table class="table" >
+            
+                <tr>
+                        <th scope="col">Facility ID</th>
+                        <th scope="col">Facility Name</th>
+                        <th scope="col">Facility Address</th>
+                        <th scope="col">Facility Contact</th>
+                        <th scope="col">Facility Availability</th>
+                        <th scope="col">Facility Charges</th>
+                    </tr>
+            
+          
+            <tr *ngFor="let item of result">
+             <td>{{item.Facility_ID}}</td>
+             <td>{{item.Facility_Name}}</td>
+             <td>{{item.Facility_Address}}</td>
+             <td>{{item.Facility_Contact}}</td>
+             <td>{{item.Facility_Availability}}</td>
+             <td>{{item.Facility_Charges}}</td>
+            </tr>
+         
+        
+        </table>
+       <!-- <button (click)="ShowFacility()">Show Facility Data</button>-->
+        
+    </div>
+
+
+    <div class="col-10" [hidden]="insert">
+   
+    <h2> Insert Facility Data </h2>
+    <form [formGroup]="insertfacility" >
+    <table class="table">
+    <tr>
+    <td>Facility Name</td>
+    <td><input type="text" formControlName="fname"></td>
+    <td><span *ngIf="insertfacility.controls['fname'].hasError('required')">Facility Name cannot be empty</span></td>
+    </tr>
+    <tr>
+    <td>Facility Address</td>
+    <td><input type="text" formControlName="add"></td>
+    <td><span *ngIf="insertfacility.controls['add'].hasError('required')">Facility Address cannot be empty</span></td>
+    </tr>
+
+    <tr>
+    <td>Facility Contact</td>
+    <td><input type="number" formControlName="cont"></td>
+    <td><span *ngIf="insertfacility.controls['cont'].hasError('required')">Facility Contact cannot be empty</span></td>
+    </tr>
+    <tr>
+    <td>Facility Availability</td>
+    <td><input type="number" formControlName="avail"></td>
+    <td><span *ngIf="insertfacility.controls['avail'].hasError('required')">Facility Availability cannot be empty</span></td>
+    </tr>
+    <tr>
+    <td>Facility Charges</td>
+    <td><input type="number" formControlName="charges"></td>
+    <td><span *ngIf="insertfacility.controls['charges'].hasError('required')">Facility Charges cannot be empty</span></td>
+    </tr>
+    <tr>
+    <button (click)="InsertFacility()" class="btn btn-dark"> Insert Data </button>
+    </tr>
+
+    </table>
+    </form>
+
+
+    </div>
+
+  
+<div class="col-10" [hidden]="update">
+    <h2> Select & Update Data </h2>
+    <form [formGroup]="updatefacility">
+        <table border="1" >
+    <tr>
+        <td>Facility ID</td>
+        <td><input type="number" formControlName="fid"></td>
+        <td><span *ngIf="updatefacility.controls['fid'].hasError('required')">Facility ID cannot be empty</span></td>
+    </tr>
+    <tr>
+        <td><input type="button" value="Search" class="btn btn-dark" (click)="SelectByID()" /></td> 
+     </tr>
+     <tr>
+        <td>Facility Name</td>
+        <td><input type="text" formControlName="fname" value="{{AFD.Facility_Name}}" required/></td>
+        
+    </tr>
+    <tr>
+        <td>Facility Address</td>
+        <td><input type="text" formControlName="add" value="{{AFD.Facility_Address}}" required/></td>
+        
+    </tr>
+    
+    <tr>
+        <td>Facility Contact</td>
+        <td><input type="number" formControlName="cont" value="{{AFD.Facility_Contact}}" required/></td>
+       
+        
+    </tr>
+    <tr>
+        <td>Facility Availability</td>
+        <td><input type="number" formControlName="avail" value="{{AFD.Facility_Availability}}" required/></td>
+        
+        
+    </tr>
+    <tr>
+        <td>Facility Charges</td>
+        <td><input type="number" formControlName="charges" value="{{AFD.Facility_Charges}}" required/></td>
+    </tr>
+    <tr>
+        <button type="button" class="btn btn-dark" (click)="UpdateFacility()"> Update </button>
+    </tr>
+    
+        </table>
+    </form>
+    </div>
+    
+    <div class="col-2">
+       <div class="row"><button type="button" class="btn btn-warning" (click)="show()">Show Facility Details </button>  <button type="button"  (click)="insertt()">Insert New Details</button>  <button type="button"  (click)="updatee()">Update Facility Details</button></div>
+       </div>
+</div>
+</div>

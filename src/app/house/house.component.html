@@ -1,0 +1,116 @@
+<app-navbar></app-navbar>
+    
+<div class="container">
+    <h2 >House Details</h2>
+    <div class="row">
+    <div class="col-8"  [hidden]="showed">  
+        <table class="table" >
+            <thead>
+                <tr>
+                    <th scope="col">House No</th>
+                    <th scope="col">Size Of House(BHK)</th>
+                    <th scope="col">Type Of House</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let u of result">
+                    <th scope="row">{{u.House_ID}}</th>
+                    <td>{{u.House_Size_BHK}}</td>
+                    <td>{{u.House_Type}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-8" [hidden]="inser"  >
+        <table class="table">
+            <thead></thead>
+            <tbody>
+                <tr>
+                    <th scope="row" >Enter House No: </th>
+                    <td><input type="text" name='Name' [(ngModel)]="res.House_ID" #Name="ngModel" required/></td>
+                        <td><span *ngIf="Name.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+                <tr>
+                    <th scope="row" >Enter size Of House: </th>
+                    <td><input type="number" name='size' [(ngModel)]="res.House_Size_BHK" #size="ngModel" required/></td>
+                        <td><span *ngIf="size.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+
+                <tr>
+                    <th scope="row" >Enter type Of House: </th>
+                    <td><input type="text" name='type' [(ngModel)]="res.House_Type" #type="ngModel" required/></td>
+                        <td><span *ngIf="type.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+
+                <tr>
+                    <th></th>
+                    <td><button type="button" class="btn btn-dark" (click)="InsertHouse()" >Insert </button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-8" [hidden]="updat">
+
+        <form >
+            <h4>Search</h4>
+              <table class="table">
+              
+                  <tbody>
+                  <tr >
+                      <th scope="row">Enter house ID :</th>
+                      <td><input type="text" name="id" #id/></td>
+                  </tr>   
+                  <tr>
+                    <th></th>
+                      <td><input type="button" class="btn btn-dark" (click)="getbyId(id.value)" value="Search"/></td>
+                  </tr>
+
+                    
+                  </tbody>
+                </table>
+          </form>
+        <table class="table">
+            <thead></thead>
+            <tbody>
+                <tr>
+                    <th scope="row" >Enter House No: </th>
+                    <td><input type="text" name='UName' [(ngModel)]="resUp.House_ID" #UName="ngModel" required disabled/></td>
+                        <!-- <td><span *ngIf="UName.errors?.required">Field cannot be empty</span></td> -->
+                     
+                </tr>
+                <tr>
+                    <th scope="row" >Enter size Of House: </th>
+                    <td><input type="number" name='Usize' [(ngModel)]="resUp.House_Size_BHK" #Usize="ngModel" required/></td>
+                        <td><span *ngIf="Usize.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+
+                <tr>
+                    <th scope="row" >Enter type Of House: </th>
+                    <td><input type="text" name='Utype' [(ngModel)]="resUp.House_Type" #Utype="ngModel" required/></td>
+                        <td><span *ngIf="Utype.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+                <tr>
+                    <th></th>
+                    <td><button type="button" class="btn btn-dark" (click)="updateHouse()" >Update </button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="col-4">
+            <div class="row"><button type="button" class="btn btn-warning" (click)="show()">Show House Dtails</button></div>
+            <br/>
+            <div class="row"><button type="button" class="btn btn-success" (click)="insert()">Insert House</button></div>
+            <br/>
+            <div class="row"><button type="button" class="btn btn-primary" (click)="update()">Update House Details</button></div>
+           
+    </div>
+    </div>
+</div>
+
+

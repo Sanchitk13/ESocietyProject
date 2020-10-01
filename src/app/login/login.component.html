@@ -1,0 +1,43 @@
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="/"><h3>E-Society</h3></a>
+  </nav>
+<div class="container">
+    <h2 style="background-color:coral;">Login</h2>
+    <form #userLogin="ngForm">
+        <table class="table">
+            <tr>
+                <th scope="row">Enter User Name :</th>
+                <td><input type="text" name="uname" [(ngModel)]="insertAuth.uname" #uname="ngModel" required></td>
+                <td><span *ngIf="uname.errors?.required">Username cannot be empty</span></td>
+            </tr>
+            <tr>
+                <th scope="row">Enter Password :</th>
+                <td><input type="password" name="pass" [(ngModel)]="insertAuth.pass" #pass="ngModel" required></td>
+                <td><span *ngIf="pass.errors?.required">Password cannot be empty</span></td>
+            </tr>
+            <tr>
+                <th></th>
+                <th>
+                    <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="insertAuth.type">
+                        <label ngbButtonLabel class="btn-danger">
+                          <input ngbButton type="radio" value="Admin"> Admin
+                        </label>
+                        <label ngbButtonLabel class="btn-warning">
+                          <input ngbButton type="radio" value="User"> User
+                        </label>
+                      </div>
+                      
+                </th>
+                <th></th>
+            </tr>
+            <tr>
+                <th></th>
+                <td></td>
+                <td><button type="submit" class="btn btn-success" [disabled]="userLogin.invalid" (click)="CheckLogin()">Login </button></td>
+            </tr>
+            
+        </table>
+  
+    </form>
+</div>
+  

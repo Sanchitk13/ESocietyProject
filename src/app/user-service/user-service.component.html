@@ -1,0 +1,166 @@
+<app-navbar></app-navbar>
+    
+<div class="container">
+    <h2 >Service Category</h2>
+    <div class="row">
+    <div class="col-9"  [hidden]="showed">  
+        <table class="table" >
+            <thead>
+                <tr>
+                    <th scope="col">Service Category</th>
+                    <th scope="col">User Name</th>
+                    <th scope="col">User Adress</th>
+                    <th scope="col">User contact</th>
+                    <th scope="col">User Availability</th>
+                    <th scope="col">User Charges</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let u of result">
+                    <th scope="row">{{u.Service_Category_ID}}</th>
+                    <td>{{u.User_Name}}</td>
+                    <td>{{u.User_Address}}</td>
+                    <td>{{u.User_Contact}}</td>
+                    <td>{{u.User_Availability}}</td>
+                    <td>{{u.User_Rate}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-9" [hidden]="inser"  >
+        <table class="table">
+            <thead></thead>
+            <tbody>
+                <tr>
+                    <th scope="row" >Enter category id: </th>
+                    <td><input type="text" name='cid' [(ngModel)]="res.Service_Category_ID" #cid="ngModel" required/></td>
+                        <td><span *ngIf="cid.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+                
+                <tr>
+                    <th scope="row" >Enter Name User: </th>
+                    <td><input type="text" name='Name' [(ngModel)]="res.User_Name" #Name="ngModel" required/></td>
+                        <td><span *ngIf="Name.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+
+                <tr>
+                    <th scope="row" >Enter User Address: </th>
+                    <td><input type="text" name='Addr' [(ngModel)]="res.User_Address" #Addr="ngModel" required/></td>
+                        <td><span *ngIf="Addr.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+                <tr>
+                    <th scope="row" >Enter User contact: </th>
+                    <td><input type="number" name='contact' [(ngModel)]="res.User_Contact" #contact="ngModel" required/></td>
+                        <td><span *ngIf="contact.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+                <tr>
+                    <th scope="row" >Enter User Availability: </th>
+                    <td><input type="text" name='Avl' [(ngModel)]="res.User_Availability" #Avl="ngModel" required/></td>
+                        <td><span *ngIf="Avl.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+
+                <tr>
+                    <th scope="row" >Enter User Cahrges: </th>
+                    <td><input type="number" name='Cahrges' [(ngModel)]="res.User_Rate" #Cahrges="ngModel" required/></td>
+                        <td><span *ngIf="Cahrges.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+
+
+                <tr>
+                    <th></th>
+                    <td><button type="button" class="btn btn-dark" (click)="InserUserService()" >Insert </button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-9" [hidden]="updat">
+
+        <form >
+            <h4>Search</h4>
+              <table class="table">
+              
+                  <tbody>
+                  <tr >
+                      <th scope="row">Enter User ID :</th>
+                      <td><input type="number" name="id" #id/></td>
+                  </tr>   
+                  <tr>
+                    <th></th>
+                      <td><input type="button" class="btn btn-dark" (click)="ShowUserService(id.value)" value="Search"/></td>
+                  </tr>
+
+                    
+                  </tbody>
+                </table>
+          </form>
+        <table class="table">
+            <thead></thead>
+            <tbody>
+                <tr>
+                    <th scope="row" >Enter category id: </th>
+                    <td><input type="text" name='Ucid' [(ngModel)]="upt.Service_Category_ID" #Ucid="ngModel" required/></td>
+                        <td><span *ngIf="Ucid.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+                
+                <tr>
+                    <th scope="row" >Enter Name User: </th>
+                    <td><input type="text" name='UName' [(ngModel)]="upt.User_Name" #UName="ngModel" required/></td>
+                        <td><span *ngIf="UName.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+
+                <tr>
+                    <th scope="row" >Enter User Address: </th>
+                    <td><input type="text" name='UAddr' [(ngModel)]="upt.User_Address" #UAddr="ngModel" required/></td>
+                        <td><span *ngIf="UAddr.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+                <tr>
+                    <th scope="row" >Enter User contact: </th>
+                    <td><input type="number" name='Ucontact' [(ngModel)]="upt.User_Contact" #Ucontact="ngModel" required/></td>
+                        <td><span *ngIf="Ucontact.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+                <tr>
+                    <th scope="row" >Enter User Availability: </th>
+                    <td><input type="text" name='UAvl' [(ngModel)]="upt.User_Availability" #UAvl="ngModel" required/></td>
+                        <td><span *ngIf="UAvl.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+
+                <tr>
+                    <th scope="row" >Enter User Cahrges: </th>
+                    <td><input type="number" name='UCahrges' [(ngModel)]="upt.User_Rate" #UCahrges="ngModel" required/></td>
+                        <td><span *ngIf="UCahrges.errors?.required">Field cannot be empty</span></td>
+                     
+                </tr>
+                <tr>
+                    <th></th>
+                    <td><button type="button" class="btn btn-dark" (click)="UpdateUserService()" >Update </button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="col-3">
+            <div class="row"><button type="button" class="btn btn-warning" (click)="show()">Show User Service</button></div>
+            <br/>
+            <div class="row"><button type="button" class="btn btn-success" (click)="insert()">Insert user </button></div>
+            <br/>
+            <div class="row"><button type="button" class="btn btn-primary" (click)="update()">Update User Service </button></div>
+           
+    </div>
+    </div>
+</div>
+
+
+
+
+

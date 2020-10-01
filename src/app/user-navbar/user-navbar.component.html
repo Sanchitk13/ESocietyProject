@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+  <a class="navbar-brand" href="/"><h3>E-Society</h3></a>
+  <button class="navbar-toggler" type="button" (click)="toggleNavbar()" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item ">
+        <a class="nav-link" routerLink='/'>Home<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" routerLink='/House'>House<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item" ngbDropdown>
+          <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown2" >
+           Show Services
+          </a>
+          <div ngbDropdownMenu aria-labelledby="navbarDropdown2" class="dropdown-menu dropdown-menu-right">
+            <a ngbDropdownItem routerLink="/UserNearby" (click)="$event.preventDefault()">User Near By</a>
+            <a ngbDropdownItem routerLink="/UserNearCat" (click)="$event.preventDefault()">User Near Category</a>
+            <a ngbDropdownItem routerLink="/UserServiceCat" (click)="$event.preventDefault()">User Service Category</a>
+            <a ngbDropdownItem routerLink="/UserFunctionCat" (click)="$event.preventDefault()">User Function Category</a>
+            <a ngbDropdownItem routerLink="/UserGivenService" (click)="$event.preventDefault()">User Services</a>
+            <a ngbDropdownItem routerLink="/UserAddService" (click)="$event.preventDefault()">User Additional Service</a>
+          </div>
+        </li>
+        <li class="nav-item" ngbDropdown>
+          <a class="nav-link" tabindex="1" ngbDropdownToggle id="navbarDropdown3" >
+           Booking
+          </a>
+          <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu dropdown-menu-right">
+            <a ngbDropdownItem routerLink="/UserFunctionDet" (click)="$event.preventDefault()">Book Function</a>
+          </div>
+        </li>
+      <li class="nav-item">
+      <a class="nav-link" >{{name}}<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item" [hidden]="ifpresent">
+      <a class="nav-link" type="button"  (click)="logout()">Logout<span class="sr-only">(current)</span></a>
+      </li>
+      
+    </ul>
+  </div>
+</nav>

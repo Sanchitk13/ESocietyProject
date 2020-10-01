@@ -1,0 +1,122 @@
+<app-navbar></app-navbar>
+<div class="container">
+<h2>NearBy Services</h2>
+    <div class="col-10" [hidden]="showed">
+        <table class="table">
+            <tr>
+                <td>Nearby Service ID</td>
+                <td>Nearby Services Category_ID</td>
+                <td>Nearby Services Name</td>
+                <td>Nearby Services Contact</td>
+                <td>Nearby Services Address</td>
+                <td>Nearby Services Distance</td>
+                <td>Nearby Services Details</td>
+            </tr>
+            <tr *ngFor="let item of result">
+             <td>{{item.Nearby_Services_ID}}</td>
+             <td>{{item.Nearby_Services_Category_ID}}</td>
+             <td>{{item.Nearby_Services_Name}}</td>
+             <td>{{item.Nearby_Services_Contact}}</td>
+             <td>{{item.Nearby_Services_Address}}</td>
+             <td>{{item.Nearby_Services_Distance}}</td>
+             <td>{{item.Nearby_Services_Details}}</td>
+            </tr>
+        
+        </table>
+    </div>
+    <div class="col-10" [hidden]="insert">
+        <h2> Insert Data </h2>
+        <form [formGroup]="Service" >
+            <table class="table">
+        <tr>
+            <td>Near by Service Category ID</td>
+            <td><input type="number" formControlName="Nearby_Services_Category_ID"></td>
+            <td><span *ngIf="Service.controls['Nearby_Services_Category_ID'].hasError('required')">Facility Name cannot be empty</span></td>
+        </tr>
+        <tr>
+            <td>Near by Service Name</td>
+            <td><input type="text" formControlName="Nearby_Services_Name"></td>
+            <td><span *ngIf="Service.controls['Nearby_Services_Name'].hasError('required')"> cannot be empty</span></td>
+        </tr>
+        
+        <tr>
+            <td>Near by Service Contact</td>
+            <td><input type="number" formControlName="Nearby_Services_Contact"></td>
+            <td><span *ngIf="Service.controls['Nearby_Services_Contact'].hasError('required')"> cannot be empty</span></td>
+        </tr>
+        <tr>
+            <td>Near by Service Address</td>
+            <td><input type="text" formControlName="Nearby_Services_Address"></td>
+            <td><span *ngIf="Service.controls['Nearby_Services_Address'].hasError('required')"> cannot be empty</span></td>
+        </tr>
+        <tr>
+            <td>Near by Service Distancer</td>
+            <td><input type="number" formControlName="Nearby_Services_Distance"></td>
+            <td><span *ngIf="Service.controls['Nearby_Services_Distance'].hasError('required')">cannot be empty</span></td>
+        </tr>
+        <tr>
+            <td>Near by Service Details</td>
+            <td><input type="text" formControlName="Nearby_Services_Details"></td>
+            <td><span *ngIf="Service.controls['Nearby_Services_Details'].hasError('required')"> cannot be empty</span></td>
+        </tr>
+        <tr>
+            <button (click)="InsertService()" class="btn btn-dark"> Insert Data </button>
+        </tr>
+        
+            </table>
+        </form>
+    </div>
+    <div class="col-10" [hidden]="update">
+        <h2>Updating Data</h2>
+        <form [formGroup]="Service" >
+            <table class="table">
+        <tr>
+            <td> Near by Services ID</td>
+            <td><input type="number" formControlName="Nearby_Services_ID"></td>
+            <td><span *ngIf="Service.controls['Nearby_Services_ID'].hasError('required')">cannot be empty</span></td>
+        </tr>
+        <tr>
+            <td><input type="button" class="btn btn-dark" value="Select" (click)="SelectByID()" /></td> 
+         </tr>
+         <tr>
+            <td>Nearby Services Category ID</td>
+            <td><input type="number" formControlName="Nearby_Services_Category_ID" value="{{NB.Nearby_Services_Category_ID}}" readonly/></td>
+            
+        </tr>
+        <tr>
+            <td>Nearby Services Name</td>
+            <td><input type="text" formControlName="Nearby_Services_Name" value="{{NB.Nearby_Services_Name}}" required/></td>
+            
+        </tr>
+        
+        <tr>
+            <td>Nearby Services Contact</td>
+            <td><input type="number" formControlName="Nearby_Services_Contact" value="{{NB.Nearby_Services_Contact}}" required/></td>
+           
+            
+        </tr>
+        <tr>
+            <td>Nearby Services Address</td>
+            <td><input type="text" formControlName="Nearby_Services_Address" value="{{NB.Nearby_Services_Address}}" required/></td>
+            
+            
+        </tr>
+        <tr>
+            <td>Nearby Services Distance</td>
+            <td><input type="number" formControlName="Nearby_Services_Distance" value="{{NB.Nearby_Services_Distance}}" required/></td>
+        </tr>
+        <tr>
+            <td>Nearby Services Details</td>
+            <td><input type="text" formControlName="Nearby_Services_Details" value="{{NB.Nearby_Services_Details}}" required/></td>
+        </tr>
+        <tr>
+            <button (click)="UpdateService()" class="btn btn-dark"> Update Data </button>
+        </tr>
+        
+            </table>
+        </form>
+    </div>
+    <div>
+        <button type="button" class="btn btn-warning" (click)="show()">Show Services</button>  <button type="button"  (click)="insertt()">Insert Services</button>  <button type="button"  (click)="updatee()">Update Service Details</button> 
+    </div>
+

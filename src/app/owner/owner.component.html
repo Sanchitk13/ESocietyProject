@@ -1,0 +1,228 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <h2 >Owners Details</h2>
+
+    <div class="row">
+        <div class="row" style="margin-left: auto; margin-right: auto;"><button type="button" class="btn btn-warning" (click)="show()">Show All Owners Details </button></div><span>   </span>
+       
+        <div class="row" style="margin-left: auto; margin-right: auto;"><button type="button" class="btn btn-success" (click)="insert()">Insert Owner Details</button></div>
+      
+        <div class="row" style="margin-left: auto; margin-right: auto;"><button type="button" class="btn btn-primary" (click)="update()">Update Owners details</button></div>
+       
+    </div>
+    <div class="row">
+    <div class="col"  [hidden]="showed">  
+        <table class="table" >
+            <thead>
+                <tr>
+                    <th scope="col">Owners ID</th>
+                    <th scope="col">UserName </th>
+                    <th scope="col">Password </th>
+                    <th scope="col">Email </th>
+                    <th scope="col">House No</th>
+                    <th scope="col">Society No</th>
+                    <th scope="col">Owners Name</th>
+                    <th scope="col">Id Proof</th>
+                    <th scope="col">Owner contact</th>
+                    <th scope="col">Owners Occupation</th>
+                    <th scope="col">Size Of Family</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let u of result">
+                    <th scope="row">{{u.Owner_ID}}</th>
+                    <td>{{u.Owner_UserName}}</td>
+                    <td>{{u.Owner_Password}}</td>
+                    <td>{{u.Owener_Email}}</td>
+                    <td>{{u.House_ID}}</td>
+                    <td>{{u.Society_ID}}</td>
+                    <td>{{u.Owner_FirstName}} {{u.Owner_Lastname}}</td>
+                    <td>{{u.Owner_IDPROOF}}</td>
+                    <td>{{u.Owner_Contact}}</td>
+                    <td>{{u.Owner_Occupation}}</td>
+                    <td>{{u.Owner_NumberOfFamily}}</td>
+                    
+                </tr>
+            </tbody>
+        </table>
+  
+    </div>
+</div>
+<div class="col" [hidden]="inser"  >
+    <form #InsertFrom="ngForm">
+    <table class="table">
+        <thead></thead>
+        <tbody>
+            <tr>
+                <th scope="row" >Enter UserName: </th>
+                <td><input type="text" name='uname' [(ngModel)]="res.Owner_UserName" #uname="ngModel" required/></td>
+                    <td><span *ngIf="uname.errors?.required">Username cannot be empty</span></td>
+                 
+            </tr>
+            <tr>
+                <th scope="row" >Enter Email : </th>
+                <td><input type="email" name='Email' [(ngModel)]="res.Owener_Email" #Email="ngModel" required/></td>
+                    <td><span *ngIf="Email.errors?.required">Email cannot be empty</span></td>
+                 
+            </tr>
+            <tr>
+                <th scope="row" >Enter House No: </th>
+                <td><input type="text" name='hno' [(ngModel)]="res.House_ID" #hno="ngModel" required/></td>
+                    <td><span *ngIf="hno.errors?.required">Hpouse No cannot be empty</span></td>
+                 
+            </tr>
+            <tr>
+                <th scope="row" >Enter Society No: </th>
+                <td><input type="text" name='sno' [(ngModel)]="res.Society_ID" #sno="ngModel" required/></td>
+                    <td><span *ngIf="sno.errors?.required">Society no cannot be empty</span></td>
+                 
+            </tr>
+            <tr>
+                <th scope="row" >Enter First name: </th>
+                <td><input type="text" name='fname' [(ngModel)]="res.Owner_FirstName" #fname="ngModel" required/></td>
+                    <td><span *ngIf="fname.errors?.required">Enter First name</span></td>
+                 
+            </tr>
+            <tr>
+                <th scope="row" >Enter Last name: </th>
+                <td><input type="text" name='lname' [(ngModel)]="res.Owner_Lastname" #lname="ngModel" required/></td>
+                    <td><span *ngIf="lname.errors?.required">Plz metion details</span></td>
+                 
+            </tr>
+            <tr>
+                <th scope="row" >Enter ID proof: </th>
+                <td><input type="text" name='idproof' [(ngModel)]="res.Owner_IDPROOF" #idproof="ngModel" required/></td>
+                    <td><span *ngIf="idproof.errors?.required">Plz metion details</span></td>
+                 
+            </tr>
+            <tr>
+                <th scope="row" >Enter Contact No: </th>
+                <td><input type="text" name='contact' [(ngModel)]="res.Owner_Contact" #contact="ngModel" required/></td>
+                    <td><span *ngIf="contact.errors?.required">Plz metion details</span></td>
+                 
+            </tr>
+            <tr>
+                <th scope="row" >Enter Owners Occupation: </th>
+                <td><input type="text" name='occ' [(ngModel)]="res.Owner_Occupation" #occ="ngModel" required/></td>
+                    <td><span *ngIf="occ.errors?.required">Plz metion details</span></td>
+                 
+            </tr>
+            <tr>
+                <th scope="row" >Enter No of Members In Family: </th>
+                <td><input type="number" name='member' [(ngModel)]="res.Owner_NumberOfFamily" #member="ngModel" required/></td>
+                    <td><span *ngIf="member.errors?.required">Plz metion details</span></td>
+                 
+            </tr>
+            
+            <tr>
+                <th></th>
+                <td><button type="button" class="btn btn-dark" [disabled]="InsertFrom.invalid" (click)="InsertDetails()" >Insert </button></td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+</div>
+<div class="col" [hidden]="updat">
+
+    <form >
+        <h4>Search</h4>
+          <table class="table">
+          
+              <tbody>
+              <tr >
+                  <th scope="row">Enter Owner ID :</th>
+                  <td><input type="number" name="id" #id/></td>
+              </tr>   
+              <tr>
+                <th></th>
+                  <td><input type="button" class="btn btn-dark" (click)="getbyId(id.value)" value="Search"/></td>
+              </tr>
+
+                
+              </tbody>
+            </table>
+      </form>
+      <form #ownerUpdate="ngForm">
+    <table class="table">
+        <thead></thead>
+        <tbody>
+            <tr>
+                <th scope="row" >Enter UserName: </th>
+                <td><input type="text" name='Uuname' [(ngModel)]="resUp.Owner_UserName" #Uuname="ngModel" required/></td>
+                    <td><span *ngIf="Uuname.errors?.required">Username cannot be empty</span></td>
+                 
+            </tr>
+            <tr>
+                <th scope="row" >Enter Email : </th>
+                <td><input type="email" name='UEmail' [(ngModel)]="resUp.Owener_Email" #UEmail="ngModel" required/></td>
+                    <td><span *ngIf="UEmail.errors?.required">Email cannot be empty</span></td>
+                 
+            </tr>
+            <tr>
+                <th scope="row" >Enter Password: </th>
+                <td><input type="text" name='Upass' [(ngModel)]="resUp.Owner_Password" #Upass="ngModel" required/></td>
+                    <td><span *ngIf="Upass.errors?.required">Password cannot be empty</span></td>
+                 
+            </tr>
+            <tr>
+                <th scope="row" >Enter House No: </th>
+                <td><input type="text" name='Uhno' [(ngModel)]="resUp.House_ID" #Uhno="ngModel" required/></td>
+                    <td><span *ngIf="Uhno.errors?.required">Hpouse No cannot be empty</span></td>
+                 
+            </tr>
+            <tr>
+                <th scope="row" >Enter Society No: </th>
+                <td><input type="text" name='Usno' [(ngModel)]="resUp.Society_ID" #Usno="ngModel" required/></td>
+                    <td><span *ngIf="Usno.errors?.required">Society no cannot be empty</span></td>
+                 
+            </tr>
+            <tr>
+                <th scope="row" >Enter First name: </th>
+                <td><input type="text" name='Ufname' [(ngModel)]="resUp.Owner_FirstName" #Ufname="ngModel" required/></td>
+                    <td><span *ngIf="Ufname.errors?.required">Enter First name</span></td>
+                 
+            </tr>
+            <tr>
+                <th scope="row" >Enter Last name: </th>
+                <td><input type="text" name='Ulname' [(ngModel)]="resUp.Owner_Lastname" #Ulname="ngModel" required/></td>
+                    <td><span *ngIf="Ulname.errors?.required">Plz metion details</span></td>
+                 
+            </tr>
+            <tr>
+                <th scope="row" >Enter ID proof: </th>
+                <td><input type="text" name='Uidproof' [(ngModel)]="resUp.Owner_IDPROOF" #Uidproof="ngModel" required/></td>
+                    <td><span *ngIf="Uidproof.errors?.required">Plz metion details</span></td>
+                 
+            </tr>
+            <tr>
+                <th scope="row" >Enter Contact No: </th>
+                <td><input type="text" name='Ucontact' [(ngModel)]="resUp.Owner_Contact" #Ucontact="ngModel" required/></td>
+                    <td><span *ngIf="Ucontact.errors?.required">Plz metion details</span></td>
+                 
+            </tr>
+            <tr>
+                <th scope="row" >Enter Owners Occupation: </th>
+                <td><input type="text" name='Uocc' [(ngModel)]="resUp.Owner_Occupation" #Uocc="ngModel" required/></td>
+                    <td><span *ngIf="Uocc.errors?.required">Plz metion details</span></td>
+                 
+            </tr>
+            <tr>
+                <th scope="row" >Enter No of Members In Family: </th>
+                <td><input type="number" name='Umember' [(ngModel)]="resUp.Owner_NumberOfFamily" #Umember="ngModel" required/></td>
+                    <td><span *ngIf="Umember.errors?.required">Plz metion details</span></td>
+                 
+            </tr>
+
+            <tr>
+                <th></th>
+                  <td><input type="button" class="btn btn-dark" [disabled]="ownerUpdate.invalid" (click)="OwnerUpdate()" value="Update"/></td>
+              </tr>
+            
+        </tbody>
+    </table>
+</form>
+</div>
+
+
+</div>
+

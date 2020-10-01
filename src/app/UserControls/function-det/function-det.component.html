@@ -1,0 +1,57 @@
+<app-user-navbar></app-user-navbar>
+<div class="container">
+    <h2 >Function Details</h2>
+    <div class="row">
+        <div class="col-10" [hidden]="inser"  >
+            <table class="table">
+                <thead></thead>
+                <tbody>
+                    <tr>
+                        <th scope="row" >Enter Function category ID: </th>
+                        <td><input type="number" name='FC' [(ngModel)]="res.Function_Category_ID" #FC="ngModel" required/></td>
+                            <td><span *ngIf="FC.errors?.required">Function ID cannot be empty</span></td>
+                         
+                    </tr>
+                    <tr>
+                        <th scope="row" >Enter ID of owner: </th>
+                        <td><input type="number" name='OID' [(ngModel)]="res.Owner_ID" #OID="ngModel" required/></td>
+                            <td><span *ngIf="OID.errors?.required">Owner ID cannot be empty</span></td>
+                         
+                    </tr>
+                    <tr>
+                        <th scope="row" >Enter Date Of Funtion: </th>
+                        <td><input type="date" name='Date' [(ngModel)]="res.Function_Date" #Date="ngModel" required/></td>
+                            <td><span *ngIf="Date.errors?.required">Field cannot be empty</span></td>
+                         
+                    </tr>
+                    <tr>
+                        <th scope="row" >Enter time of the function: </th>
+                        <td><input type="time" name='Time' [(ngModel)]="res.Function_Time" #Time="ngModel" required/></td>
+                            <td><span *ngIf="Time.errors?.required">Field cannot be empty</span></td>
+                         
+                    </tr>
+                    <tr>
+                        <th scope="row" >Enter Approx duration in hours: </th>
+                        <td><input type="text" name='Dur' [(ngModel)]="res.Function_Duration" #Dur="ngModel" required/></td>
+                            <td><span *ngIf="Dur.errors?.required">Metion Approx Duration</span></td>
+                         
+                    </tr>
+                    <tr>
+                        <th scope="row" >Enter Details: </th>
+                        <td><input type="text" name='Details' [(ngModel)]="res.Function_Details" #Details="ngModel" required/></td>
+                            <td><span *ngIf="Details.errors?.required">Plz metion details</span></td>
+                         
+                    </tr>
+                    
+                    <tr>
+                        <th></th>
+                        <td><button type="button" class="btn btn-dark" (click)="InsertDetails()" >Insert </button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-2">
+            <div class="row"><button type="button" class="btn btn-success" (click)="insert()">Insert Fuction Details</button></div>
+            </div>
+            </div>
+</div>
